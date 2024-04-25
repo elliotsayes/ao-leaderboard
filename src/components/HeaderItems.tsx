@@ -11,7 +11,7 @@ const HeaderItems = React.forwardRef<HTMLDivElement, HeaderItemsProps>(
   ({ className, ...props }, ref) => {
     return (
       <div
-        className={cn("w-full flex flex-row justify-between items-center", className)}
+        className={cn("w-full flex flex-row justify-between items-center gap-8", className)}
         ref={ref}
         {...props}
       >
