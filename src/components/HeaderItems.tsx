@@ -15,7 +15,7 @@ const HeaderItems = React.forwardRef<HTMLDivElement, HeaderItemsProps>(
         ref={ref}
         {...props}
       >
-        <div className="flex flex-row justify-start items-center px-2 gap-4">
+        <div className="flex flex-row justify-start items-center gap-4">
           <MonoLink href="#">
             Points
           </MonoLink>
@@ -29,7 +29,7 @@ const HeaderItems = React.forwardRef<HTMLDivElement, HeaderItemsProps>(
         <ThemeToggle
           value={false}
           onValueChange={() => console.log("clicked")}
-          scale={1.5}
+          scale={1.2}
         />
       </div>
     )
