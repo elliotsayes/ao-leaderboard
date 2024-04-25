@@ -33,14 +33,6 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-export const Inactive: Story = {}
-
-export const Active: Story = {
-  args: {
-    value: true,
-  },
-}
-
 const TestBed = ({scale}: {scale: number}) => {
   const [value, setValue] = React.useState(false);
   return (
@@ -54,4 +46,12 @@ const TestBed = ({scale}: {scale: number}) => {
 
 export const Interactive: Story = {
   render: (args) => <TestBed scale={args.scale} />,
+}
+
+export const Inactive: Story = {}
+
+export const Active: Story = {
+  args: {
+    value: true,
+  },
 }
