@@ -27,3 +27,5 @@ dist-ssr
 
 # Sample stories
 src/stories/**
+
+storybook-static/**
