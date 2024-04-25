@@ -18,7 +18,7 @@ const meta = {
     },
   },
   args: {
-    children: "text",
+    children: "Text",
     href: "https://example.com",
   }
 } satisfies Meta<typeof MonoLink>
