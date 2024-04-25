@@ -13,9 +13,15 @@ const meta = {
   parameters: {
     // layout: "centered"
   },
+  argTypes: {
+    altWallpaper: {
+      control: "boolean",
+    },
+  },
   args: {
     header: "Header",
     children: "Content",
+    altWallpaper: false,
   },
 } satisfies Meta<typeof PageLayout>
 
