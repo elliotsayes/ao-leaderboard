@@ -84,7 +84,7 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ value, onValueChange, scale }
         mask={mask}
       >
         <Sprite
-          image={"public/assets/graphics/bg.png"}
+          image={"./assets/graphics/bg.png"}
           width={baseSize.width}
           height={baseSize.height}
         />
