@@ -17,7 +17,7 @@ const svgs = {
 } as const;
 
 const baseSize = {
-  width: 64,
+  width: 54,
   height: 22,
   toggleDiameter: 20,
 }
