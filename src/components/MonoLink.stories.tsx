@@ -3,34 +3,47 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { MonoLink } from "./MonoLink"
 
 /**
- * Displays a MonoLink or a component that looks like a MonoLink.
+ * Header links
  */
 const meta = {
-  title: "ui/MonoLink",
+  title: "_Lucas/text/MonoLink",
   component: MonoLink,
   tags: ["autodocs"],
+  parameters: {
+    layout: "centered",
+  },
   argTypes: {
     children: {
       control: "text",
     },
   },
-  parameters: {
-    layout: "centered",
-  },
   args: {
-    children: "MonoLink",
-  },
+    children: "text",
+    href: "https://example.com",
+  }
 } satisfies Meta<typeof MonoLink>
 
 export default meta
 
 type Story = StoryObj<typeof meta>
 
-/**
- * The default form of the MonoLink, used for primary actions and commands.
- */
-export const Default: Story = {
+export const Default: Story = {}
+
+export const Points: Story = {
   args: {
-    href: "https://example.com",
+    children: "Points",
+  },
+}
+
+export const Quests: Story = {
+  args: {
+    children: "Quests",
+  },
+}
+
+export const QuestsVariant: Story = {
+  args: {
+    children: "Quests",
+    className: "underline",
   },
 }

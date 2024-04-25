@@ -3,22 +3,22 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { MonoTitle } from "./MonoTitle"
 
 /**
- * Displays a MonoTitle or a component that looks like a MonoTitle.
+ * Title text
  */
 const meta = {
-  title: "ui/MonoTitle",
+  title: "_Lucas/text/MonoTitle",
   component: MonoTitle,
   tags: ["autodocs"],
+  parameters: {
+    layout: "centered",
+  },
   argTypes: {
     children: {
       control: "text",
     },
   },
-  parameters: {
-    layout: "centered",
-  },
   args: {
-    children: "MonoTitle",
+    children: "Text",
   },
 } satisfies Meta<typeof MonoTitle>
 
@@ -26,11 +26,10 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-/**
- * The default form of the MonoTitle, used for primary actions and commands.
- */
-export const Default: Story = {
+export const Default: Story = {}
+
+export const ExpLeaderboard: Story = {
   args: {
-    href: "https://example.com",
+    children: "EXP Leaderboard",
   },
 }
