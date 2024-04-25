@@ -11,14 +11,14 @@ const PageLayout = React.forwardRef<HTMLDivElement, PageLayoutProps>(
   ({ header, className, ...props }, ref) => {
     return (
       <div
-        className={cn("flex flex-col justify-stretch items-stretch gap-5 px-5 py-5", className)}
+        className={cn("h-screen flex flex-col justify-stretch items-stretch gap-5 px-5 py-5", className)}
         ref={ref}
         {...props}
       >
-        <Section className="flex pl-8 pr-6 py-3">
+        <Section className="pl-8 pr-6 py-3">
           {header}
         </Section>
-        <Section className="flex">
+        <Section className="flex-1 max-h-none flex">
           {props.children}
         </Section>
       </div>
