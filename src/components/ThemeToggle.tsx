@@ -65,108 +65,111 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ value, onValueChange, scale }
   }, [scaledSize]);
 
   return (
-    <Stage
-      width={scaledSize.width}
-      height={scaledSize.height}
-      options={{
-        backgroundAlpha: 0,
-      }}
+    <button
       onClick={() => {
         console.log("clicked")
         onValueChange(!value)
       }}
     >
-      {/* Container for masking the background */}
-      <Container
+      <Stage
         width={scaledSize.width}
         height={scaledSize.height}
-        scale={scale}
-        mask={mask}
+        options={{
+          backgroundAlpha: 0,
+        }}
       >
-        <Sprite
-          image={"./assets/graphics/bg.png"}
-          width={baseSize.width}
-          height={baseSize.height}
-        />
-        <Spring
-          to={targetValues}
+        {/* Container for masking the background */}
+        <Container
+          width={scaledSize.width}
+          height={scaledSize.height}
+          scale={scale}
+          mask={mask}
         >
-          {(springProps) => (
-            <>
-              <Sprite
-                image={"./assets/graphics/bg2.png"}
-                width={baseSize.width}
-                height={baseSize.height}
-                alpha={springProps.sunAlpha}
-              />
-              <PixiSvg
-                x={baseSize.width * 0.8}
-                y={baseSize.height * 0.5}
-                alpha={springProps.arioAlpha}
-                image={svgs["stars"]}
-                quality={qualityFactor * scale}
-                anchor={{x: 0.5, y: 0.5}}
-              />
-              <Container
-                y={baseSize.height * 0.5}
-                pivot={{x: baseSize.height / 2, y: baseSize.height / 2}}
-                x={springProps.containerX}
-              >
-                <PixiSvg
-                  rotation={springProps.arioRotation}
-                  x={baseSize.height * 0.5}
-                  y={baseSize.height * 0.5}
-                  image={svgs["rays"]}
-                  quality={qualityFactor * scale}
-                  anchor={{x: 0.5, y: 0.5}}
+          <Sprite
+            image={"./assets/graphics/bg.png"}
+            width={baseSize.width}
+            height={baseSize.height}
+          />
+          <Spring
+            to={targetValues}
+          >
+            {(springProps) => (
+              <>
+                <Sprite
+                  image={"./assets/graphics/bg2.png"}
+                  width={baseSize.width}
+                  height={baseSize.height}
+                  alpha={springProps.sunAlpha}
                 />
                 <PixiSvg
-                  x={baseSize.height * 0.5}
+                  x={baseSize.width * 0.8}
                   y={baseSize.height * 0.5}
-                  image={svgs["moon"]}
-                  quality={qualityFactor * scale}
-                  anchor={{x: 0.5, y: 0.5}}
-                />
-                <PixiSvg
                   alpha={springProps.arioAlpha}
-                  rotation={springProps.arioRotation}
-                  x={baseSize.height * 0.5}
-                  y={baseSize.height * 0.5}
-                  image={svgs["ario"]}
+                  image={svgs["stars"]}
                   quality={qualityFactor * scale}
                   anchor={{x: 0.5, y: 0.5}}
                 />
-              </Container>
-              <Container
-                alpha={springProps.sunAlpha}
-                rotation={springProps.sunRotation}
-                y={baseSize.height * 0.5}
-                x={springProps.containerX}
-                pivot={{x: baseSize.height / 2, y: baseSize.height / 2}}
-                anchor={{x: 0.5, y: 0.5}}
-              >
-                <PixiSvg
-                  x={baseSize.height * 0.5}
+                <Container
                   y={baseSize.height * 0.5}
-                  image={svgs["sun"]}
-                  quality={qualityFactor * scale}
-                  // pivot={{x: -baseSize.height / 2, y: -baseSize.height / 2}}
-                  anchor={{x: 0.5, y: 0.5}}
-                />
-                <PixiSvg
-                  x={baseSize.height * 0.5}
+                  pivot={{x: baseSize.height / 2, y: baseSize.height / 2}}
+                  x={springProps.containerX}
+                >
+                  <PixiSvg
+                    rotation={springProps.arioRotation}
+                    x={baseSize.height * 0.5}
+                    y={baseSize.height * 0.5}
+                    image={svgs["rays"]}
+                    quality={qualityFactor * scale}
+                    anchor={{x: 0.5, y: 0.5}}
+                  />
+                  <PixiSvg
+                    x={baseSize.height * 0.5}
+                    y={baseSize.height * 0.5}
+                    image={svgs["moon"]}
+                    quality={qualityFactor * scale}
+                    anchor={{x: 0.5, y: 0.5}}
+                  />
+                  <PixiSvg
+                    alpha={springProps.arioAlpha}
+                    rotation={springProps.arioRotation}
+                    x={baseSize.height * 0.5}
+                    y={baseSize.height * 0.5}
+                    image={svgs["ario"]}
+                    quality={qualityFactor * scale}
+                    anchor={{x: 0.5, y: 0.5}}
+                  />
+                </Container>
+                <Container
+                  alpha={springProps.sunAlpha}
+                  rotation={springProps.sunRotation}
                   y={baseSize.height * 0.5}
-                  image={svgs["mushroom"]}
-                  quality={qualityFactor * scale}
-                  // pivot={{x: -baseSize.height / 2, y: -baseSize.height / 2}}
+                  x={springProps.containerX}
+                  pivot={{x: baseSize.height / 2, y: baseSize.height / 2}}
                   anchor={{x: 0.5, y: 0.5}}
-                />
-              </Container>
-            </>
-          )}
-        </Spring>
-      </Container>
-    </Stage>
+                >
+                  <PixiSvg
+                    x={baseSize.height * 0.5}
+                    y={baseSize.height * 0.5}
+                    image={svgs["sun"]}
+                    quality={qualityFactor * scale}
+                    // pivot={{x: -baseSize.height / 2, y: -baseSize.height / 2}}
+                    anchor={{x: 0.5, y: 0.5}}
+                  />
+                  <PixiSvg
+                    x={baseSize.height * 0.5}
+                    y={baseSize.height * 0.5}
+                    image={svgs["mushroom"]}
+                    quality={qualityFactor * scale}
+                    // pivot={{x: -baseSize.height / 2, y: -baseSize.height / 2}}
+                    anchor={{x: 0.5, y: 0.5}}
+                  />
+                </Container>
+              </>
+            )}
+          </Spring>
+        </Container>
+      </Stage>
+    </button>
   )
 }
 
