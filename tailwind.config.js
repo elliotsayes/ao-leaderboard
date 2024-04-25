@@ -90,6 +90,10 @@ module.exports = {
       fontFamily: {
         mono: "IBM Plex Mono, monospace",
       },
+      backgroundImage: {
+        'cosmic-nodes': "url('/assets/wallpaper/2d80cc4e03baa6aeebbc0978ce747457dcd68296.webp')",
+        'mushy-mush': "url('/assets/wallpaper/315d624e6712a8a636acea70231b2e3c5420391b.webp')",
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],

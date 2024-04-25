@@ -5,13 +5,14 @@ import { Section } from "./Section";
 export interface PageLayoutProps
   extends React.HTMLAttributes<HTMLDivElement> {
   header: React.ReactNode;
+  altWallpaper?: boolean;
 }
 
 const PageLayout = React.forwardRef<HTMLDivElement, PageLayoutProps>(
-  ({ header, className, ...props }, ref) => {
+  ({ header, altWallpaper, className, ...props }, ref) => {
     return (
       <div
-        className={cn("h-screen flex flex-col justify-stretch items-stretch gap-5 px-5 py-5", className)}
+        className={cn("h-screen flex flex-col justify-stretch items-stretch gap-5 px-5 py-5 bg-cover bg-center", altWallpaper ? 'bg-mushyMush' : 'bg-cosmic-nodes' , className)}
         ref={ref}
         {...props}
       >
