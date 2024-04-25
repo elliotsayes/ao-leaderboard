@@ -32,18 +32,21 @@ export const Default: Story = {}
 export const Points: Story = {
   args: {
     children: "Points",
+    href: "https://ar.io/points",
   },
 }
 
 export const Quests: Story = {
   args: {
     children: "Quests",
+    href: "https://zealy.io/c/ar-io",
   },
 }
 
 export const QuestsAlt: Story = {
   args: {
     children: "Quests",
+    href: "https://zealy.io/c/ar-io",
     className: "underline font-[400]",
   },
 }
