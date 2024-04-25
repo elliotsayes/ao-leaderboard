@@ -41,7 +41,7 @@ export const Quests: Story = {
   },
 }
 
-export const QuestsVariant: Story = {
+export const QuestsAlt: Story = {
   args: {
     children: "Quests",
     className: "underline",
