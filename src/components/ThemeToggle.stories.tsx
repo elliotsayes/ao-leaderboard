@@ -8,7 +8,7 @@ import React from "react";
  * ThemeToggle container
  */
 const meta = {
-  title: "_Lucas/layout/ThemeToggle",
+  title: "_Lucas/buttons/ThemeToggle",
   component: ThemeToggle,
   tags: ["autodocs"],
   parameters: {
