@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils"
 import React from "react"
 import { MonoLink } from "./MonoLink";
+import { ThemeToggle } from "./ThemeToggle";
 
 export interface HeaderItemsProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -10,7 +11,7 @@ const HeaderItems = React.forwardRef<HTMLDivElement, HeaderItemsProps>(
   ({ className, ...props }, ref) => {
     return (
       <div
-        className={cn("flex flex-row justify-between items-center", className)}
+        className={cn("w-full flex flex-row justify-between items-center", className)}
         ref={ref}
         {...props}
       >
@@ -25,6 +26,11 @@ const HeaderItems = React.forwardRef<HTMLDivElement, HeaderItemsProps>(
             Quests
           </MonoLink>
         </div>
+        <ThemeToggle
+          value={false}
+          onValueChange={() => console.log("clicked")}
+          scale={1.5}
+        />
       </div>
     )
   }
