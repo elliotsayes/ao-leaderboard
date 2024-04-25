@@ -93,6 +93,12 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ value, onValueChange, scale }
         >
           {(springProps) => (
             <>
+              <Sprite
+                image={"./assets/graphics/bg2.png"}
+                width={baseSize.width}
+                height={baseSize.height}
+                alpha={springProps.sunAlpha}
+              />
               <PixiSvg
                 x={baseSize.width * 0.8}
                 y={baseSize.height * 0.5}
