@@ -15,14 +15,14 @@ const HeaderItems = React.forwardRef<HTMLDivElement, HeaderItemsProps>(
         ref={ref}
         {...props}
       >
-        <div className="flex flex-row justify-start items-center gap-4">
-          <MonoLink href="#" className="flex">
+        <div className="flex flex-row justify-start items-center px-2 gap-4">
+          <MonoLink href="#">
             Points
           </MonoLink>
           <div
             className="h-[16px] w-px bg-title/[32%]"
           />
-          <MonoLink href="#" className="flex">
+          <MonoLink href="#">
             Quests
           </MonoLink>
         </div>
