@@ -19,6 +19,16 @@ module.exports = {
     },
     extend: {
       colors: {
+        title: "#CACAD6",
+        table: {
+          DEFAULT: "#E2E2F0",
+          header: "#A3A3AD",
+          highlight: {
+            start: "#F7C3A1",
+            via: "#EBAEC6",
+            end: "#DF9BE8",
+          }
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
