@@ -76,6 +76,9 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ value, onValueChange, scale }
         height={scaledSize.height}
         options={{
           backgroundAlpha: 0,
+          antialias: true,
+          autoDensity: true,
+          resolution: 2,
         }}
       >
         {/* Container for masking the background */}
