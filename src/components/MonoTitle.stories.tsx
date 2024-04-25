@@ -30,6 +30,6 @@ export const Default: Story = {}
 
 export const ExpLeaderboard: Story = {
   args: {
-    children: "EXP Leaderboard",
+    children: "EXP LEADERBOARD",
   },
 }
