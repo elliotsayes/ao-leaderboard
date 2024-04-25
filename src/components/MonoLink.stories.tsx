@@ -44,6 +44,6 @@ export const Quests: Story = {
 export const QuestsAlt: Story = {
   args: {
     children: "Quests",
-    className: "underline",
+    className: "underline font-[400]",
   },
 }
