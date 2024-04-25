@@ -30,6 +30,10 @@ module.exports = {
             end: "#DF9BE8",
           }
         },
+        section: {
+          backdrop: "#0E0E0F",
+          border: "#CACAD6",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
