@@ -60,8 +60,15 @@ export function TableVirtualizedInfiniteProp({ flatData, addressFilter }: TableV
         id: 'address',
         accessorKey: 'address',
         header: ({ column }) => <TableColumnHeader column={column} content="Wallet" />,
-        cell: ({ column, getValue }) => <TableColumnCell column={column} content={getValue() as string} />,
+        cell: ({ column, getValue }) => {
+          const value = getValue() as string;
+          const isSmall = fixedWrapperDimensions.width < 600;
+          const isVerySmall = fixedWrapperDimensions.width < 500;
+          const displayValue = isSmall ? ( isVerySmall ? `${value.slice(0, 6)}...${value.slice(-4)}` : `${value.slice(0, 12)}...${value.slice(-10)}` ) : value;
+          return <TableColumnCell column={column} content={displayValue} />
+        },
         enableSorting: false,
+        size: 100,
         //@ts-expect-error: Defined below
         filterFn: 'startsWithSensitive',
       },
@@ -73,7 +80,7 @@ export function TableVirtualizedInfiniteProp({ flatData, addressFilter }: TableV
         size: 200,
       },
     ],
-    []
+    [fixedWrapperDimensions.width]
   )
 
   const columnFilters = React.useMemo<ColumnFiltersState>(
