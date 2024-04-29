@@ -55,8 +55,6 @@ export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfin
         accessorKey: 'address',
         header: ({ column }) => <TableColumnHeader column={column} content="Wallet" />,
         cell: ({ column, getValue }) => <TableColumnCell column={column} content={getValue() as string} />,
-        width: "auto",
-        size: 300,
         enableSorting: false,
       },
       {
@@ -69,8 +67,6 @@ export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfin
     ],
     []
   )
-
-  const rowCount = flatData.length
 
   const table = useReactTable({
     data: flatData,
@@ -114,119 +110,106 @@ export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfin
   })
 
   return (
-    <div>
-      {process.env.NODE_ENV === 'development' ? (
-        <>
-          <p>
-            <strong>Notice:</strong> You are currently running React in
-            development mode. Virtualized rendering performance will be slightly
-            degraded until this application is built for production.
-          </p>
-          ({flatData.length} of {rowCount} rows fetched)
-        </>
-      ) : null}
-      <div
-        ref={tableContainerRef}
-        style={{
-          overflow: 'auto', //our scrollable table container
-          position: 'relative', //needed for sticky header
-          height: '600px', //should be a fixed height
-        }}
-      >
-        {/* Even though we're still using sematic table tags, we must use CSS grid and flexbox for dynamic row heights */}
-        <Table style={{ display: 'grid' }}>
-          <TableHeader
-            style={{
-              display: 'grid',
-              position: 'sticky',
-              top: 0,
-              zIndex: 1,
-            }}
-          >
-            {table.getHeaderGroups().map(headerGroup => (
+    <div
+      ref={tableContainerRef}
+      style={{
+        overflow: 'auto', //our scrollable table container
+        position: 'relative', //needed for sticky header
+        height: '600px', //should be a fixed height
+      }}
+    >
+      {/* Even though we're still using sematic table tags, we must use CSS grid and flexbox for dynamic row heights */}
+      <Table style={{ display: 'grid' }}>
+        <TableHeader
+          style={{
+            display: 'grid',
+            position: 'sticky',
+            top: 0,
+            zIndex: 1,
+          }}
+        >
+          {table.getHeaderGroups().map(headerGroup => (
+            <TableRow
+              key={headerGroup.id}
+              style={{ display: 'flex', width: '100%' }}
+            >
+              {headerGroup.headers.map(header => {
+                const isAddress = header.column.id === 'address'
+                const isScore = header.column.id ==='score'
+                return (
+                  <TableHead
+                    key={header.id}
+                    style={{
+                      display: 'flex',
+                      width: header.getSize(),
+                    }}
+                    className={`h-10 items-end ${isAddress ? 'flex-grow' : ''} ${isScore ? 'justify-end' : ''}`}
+                  >
+                    <div
+                      {...{
+                        className: header.column.getCanSort()
+                          ? 'cursor-pointer select-none'
+                          : '',
+                        onClick: header.column.getToggleSortingHandler(),
+                      }}
+                    >
+                      {flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
+                    </div>
+                  </TableHead>
+                )
+              })}
+            </TableRow>
+          ))}
+        </TableHeader>
+        <TableBody
+          style={{
+            display: 'grid',
+            height: `${rowVirtualizer.getTotalSize()}px`, //tells scrollbar how big the table is
+            position: 'relative', //needed for absolute positioning of rows
+          }}
+        >
+          {rowVirtualizer.getVirtualItems().map(virtualRow => {
+            const row = rows[virtualRow.index] as Row<LeaderBoardFlatEntry>
+            return (
               <TableRow
-                key={headerGroup.id}
-                style={{ display: 'flex', width: '100%' }}
+                data-index={virtualRow.index} //needed for dynamic row height measurement
+                ref={node => rowVirtualizer.measureElement(node)} //measure dynamic row height
+                key={row.id}
+                style={{
+                  display: 'flex',
+                  position: 'absolute',
+                  transform: `translateY(${virtualRow.start}px)`, //this should always be a `style` as it changes on scroll
+                  width: '100%',
+                }}
+                className=' justify-stretch'
               >
-                {headerGroup.headers.map(header => {
-                  const isAddress = header.column.id === 'address'
-                  const isScore = header.column.id ==='score'
+                {row.getVisibleCells().map(cell => {
+                  const isAddress = cell.column.id === 'address'
+                  const isScore = cell.column.id ==='score'
                   return (
-                    <TableHead
-                      key={header.id}
+                    <TableCell
+                      key={cell.id}
                       style={{
                         display: 'flex',
-                        width: header.getSize(),
+                        width: cell.column.getSize(),
                       }}
-                      className={`h-10 items-end ${isAddress ? 'flex-grow' : ''} ${isScore ? 'justify-end' : ''}`}
+                      className={`px-4 py-3 ${isAddress ? 'flex-grow' : ''} ${isScore ? 'justify-end' : ''}`}
                     >
-                      <div
-                        {...{
-                          className: header.column.getCanSort()
-                            ? 'cursor-pointer select-none'
-                            : '',
-                          onClick: header.column.getToggleSortingHandler(),
-                        }}
-                      >
-                        {flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                      </div>
-                    </TableHead>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </TableCell>
                   )
                 })}
               </TableRow>
-            ))}
-          </TableHeader>
-          <TableBody
-            style={{
-              display: 'grid',
-              height: `${rowVirtualizer.getTotalSize()}px`, //tells scrollbar how big the table is
-              position: 'relative', //needed for absolute positioning of rows
-            }}
-          >
-            {rowVirtualizer.getVirtualItems().map(virtualRow => {
-              const row = rows[virtualRow.index] as Row<LeaderBoardFlatEntry>
-              return (
-                <TableRow
-                  data-index={virtualRow.index} //needed for dynamic row height measurement
-                  ref={node => rowVirtualizer.measureElement(node)} //measure dynamic row height
-                  key={row.id}
-                  style={{
-                    display: 'flex',
-                    position: 'absolute',
-                    transform: `translateY(${virtualRow.start}px)`, //this should always be a `style` as it changes on scroll
-                    width: '100%',
-                  }}
-                  className=' justify-stretch'
-                >
-                  {row.getVisibleCells().map(cell => {
-                    const isAddress = cell.column.id === 'address'
-                    const isScore = cell.column.id ==='score'
-                    return (
-                      <TableCell
-                        key={cell.id}
-                        style={{
-                          display: 'flex',
-                          width: cell.column.getSize(),
-                        }}
-                        className={`px-4 py-3 ${isAddress ? 'flex-grow' : ''} ${isScore ? 'justify-end' : ''}`}
-                      >
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext()
-                        )}
-                      </TableCell>
-                    )
-                  })}
-                </TableRow>
-              )
-            })}
-          </TableBody>
-        </Table>
-      </div>
-      {/* {isFetching && <div>Fetching More...</div>} */}
+            )
+          })}
+        </TableBody>
+      </Table>
     </div>
   )
 }
