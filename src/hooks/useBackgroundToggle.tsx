@@ -1,7 +1,10 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const localStorageKey = 'altBackground';
-const defaultValue = localStorage.getItem(localStorageKey) === "true" || false;
+const localStorageValue = localStorage.getItem(localStorageKey);
+const defaultValue = localStorageValue === "true";
+
+// console.log({ localStorageKey, localStorageValue, defaultValue });
 
 interface BackgroundToggleValue {
   altBackground: boolean;
@@ -18,7 +21,7 @@ interface BackgroundTogggleProviderProps {
 }
 
 export const BackgroundToggleProvider = ({ children }: BackgroundTogggleProviderProps) => {
-  const [altBackground, setAltBackground] = useState(false);
+  const [altBackground, setAltBackground] = useState(defaultValue);
 
   useEffect(() => {
     localStorage.setItem(localStorageKey, altBackground.toString());
