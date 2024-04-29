@@ -1,0 +1,15 @@
+{
+  "name": "EXP Leaderboard",
+  "short_name": "EXP Leaderboard",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#000",
+  "description": "Leaderboard for ar-io EXP balances",
+  "icons": [
+    {
+      "src": "ar-io.webp",
+      "sizes": "32x32",
+      "type": "image/webp"
+    }
+  ]
+}

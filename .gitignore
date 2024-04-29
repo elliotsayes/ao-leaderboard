@@ -29,3 +29,6 @@ dist-ssr
 src/stories/**
 
 storybook-static/**
+
+# Test JSON
+public/gen_*.json
