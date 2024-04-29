@@ -7,6 +7,10 @@ import Gen100Data from "../../fixtures/leaderboards/gen_100.json"
 // import Gen100KData from "../../fixtures/leaderboards/gen_100K.json"
 // import Gen1MData from "../../fixtures/leaderboards/gen_1M.json"
 
+import { config } from "@/config";
+import { LeaderboardDataLoader } from "./LeaderboardDataLoader";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 const storyData = {
   "default": ContractData,
   "100": Gen100Data,
@@ -53,3 +57,25 @@ export const Gen100: Story = {
 //     flatData: storyData["1M"],
 //   }
 // }
+
+export const Loader: Story = {
+  args: {
+    flatData: [],
+  },
+  decorators: [
+    (Story) => (
+      <QueryClientProvider client={new QueryClient()}>
+        <Story />
+      </QueryClientProvider>
+    ),
+  ],
+  render: () => (
+    <LeaderboardDataLoader contractId={config.processIdLeaderboardContract}>
+      {(data) => (
+        <TableVirtualizedInfiniteProp
+          flatData={data}
+        />
+      )}
+    </LeaderboardDataLoader>
+  )
+}
