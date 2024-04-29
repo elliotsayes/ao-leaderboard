@@ -4,7 +4,11 @@ import { useState } from "react";
 
 const options = ["100", "100K", "1M"] as const;
 
-export const TestN = () => {
+interface Props {
+  addressFilter?: string;
+}
+
+export const TestN = ({ addressFilter }: Props) => {
   const [option, /* setOption */] = useState<typeof options[number]>(
     window.location.search.slice(1) as typeof options[number] || "100"
   );
@@ -28,7 +32,10 @@ export const TestN = () => {
           <option key={o} value={o}>{o}</option>
         ))}
       </select> */}
-      <TableVirtualizedInfiniteProp flatData={data} />
+      <TableVirtualizedInfiniteProp
+        flatData={data}
+        addressFilter={addressFilter}
+      />
     </>
   )
 }

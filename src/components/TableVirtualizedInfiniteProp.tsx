@@ -29,10 +29,10 @@ import { useContainerDimensions } from '@/hooks/useContainterDimensions'
 
 type TableVirtualizedInfinitePropProps = {
   flatData: LeaderBoardFlat;
-  filterText?: string;
+  addressFilter?: string;
 }
 
-export function TableVirtualizedInfiniteProp({ flatData, filterText }: TableVirtualizedInfinitePropProps) {
+export function TableVirtualizedInfiniteProp({ flatData, addressFilter }: TableVirtualizedInfinitePropProps) {
   const fixedWrapperRef = React.useRef<HTMLDivElement>(null)
   const fixedWrapperDimensions = useContainerDimensions(fixedWrapperRef);
 
@@ -80,10 +80,10 @@ export function TableVirtualizedInfiniteProp({ flatData, filterText }: TableVirt
     () => ([
       {
         id: 'address',
-        value: filterText,
+        value: addressFilter,
       },
     ]),
-    [filterText]
+    [addressFilter]
   )
 
   const table = useReactTable({
