@@ -27,6 +27,9 @@ import { TableColumnHeader } from './TableColumnHeader'
 import { TableColumnCell } from './TableColumnCell'
 import { useContainerDimensions } from '@/hooks/useContainterDimensions'
 
+const numberFormatter = Intl.NumberFormat('en', { notation: "standard" });
+const compactNumberFormatter = Intl.NumberFormat('en', { notation: "compact", minimumSignificantDigits: 3, maximumSignificantDigits: 3 });
+
 type TableVirtualizedInfinitePropProps = {
   flatData: LeaderBoardFlat;
   addressFilter?: string;
@@ -62,13 +65,13 @@ export function TableVirtualizedInfiniteProp({ flatData, addressFilter }: TableV
         header: ({ column }) => <TableColumnHeader column={column} content="Wallet" />,
         cell: ({ column, getValue }) => {
           const value = getValue() as string;
-          const isSmall = fixedWrapperDimensions.width < 600;
-          const isVerySmall = fixedWrapperDimensions.width < 500;
+          const isSmall = fixedWrapperDimensions.width < 650;
+          const isVerySmall = fixedWrapperDimensions.width < 550;
           const displayValue = isSmall ? ( isVerySmall ? `${value.slice(0, 6)}...${value.slice(-4)}` : `${value.slice(0, 12)}...${value.slice(-10)}` ) : value;
           return <TableColumnCell column={column} content={displayValue} />
         },
         enableSorting: false,
-        size: 100,
+        size: 120,
         //@ts-expect-error: Defined below
         filterFn: 'startsWithSensitive',
       },
@@ -76,8 +79,15 @@ export function TableVirtualizedInfiniteProp({ flatData, addressFilter }: TableV
         id:'score',
         accessorKey: 'score',
         header: ({ column }) => <TableColumnHeader column={column} content="Score" />,
-        cell: ({ column, getValue }) => <TableColumnCell column={column} content={`${getValue() as number} EXP`} />,
-        size: 200,
+        cell: ({ column, getValue }) => {
+          const isVerySmall = fixedWrapperDimensions.width < 400;
+          const numberText = isVerySmall 
+            ? compactNumberFormatter.format(getValue() as number)
+            : numberFormatter.format(getValue() as number)
+          const displayValue = `${numberText} EXP`
+          return <TableColumnCell column={column} content={displayValue} />
+        },
+        size: 120,
       },
     ],
     [fixedWrapperDimensions.width]
