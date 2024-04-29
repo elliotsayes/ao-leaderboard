@@ -30,9 +30,5 @@ export function LeaderboardDataLoader(props: LeaderboardDataLoaderProps) {
     return <div>No data</div>
   }
 
-  return (
-    <div>
-      {props.children(data)}
-    </div>
-  )
+  return props.children(data)
 }
