@@ -18,7 +18,7 @@ import {
   useInfiniteQuery,
 } from '@tanstack/react-query'
 import { useVirtualizer } from '@tanstack/react-virtual'
-import { LeaderBoardFlatEntry } from '@/lib/types'
+import { LeaderBoardFlatEntry } from '@/lib/model/table'
 
 const fetchSize = 50
 
