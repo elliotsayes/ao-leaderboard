@@ -19,8 +19,10 @@ export async function generateBalances(n: number, outputPath: string): Promise<B
     const address = base64urlnopad.encode(
       new Uint8Array(hasher.digest().buffer),
     );
-  
-    const balance = randNumber(1, 999) * 1000;
+    
+    const balance = randNumber(1, 4) > 3
+      ? randNumber(1, 99_999_999) * 1000
+      : randNumber(1, 9_999) * 1000;
   
     balances[address] = balance
   }

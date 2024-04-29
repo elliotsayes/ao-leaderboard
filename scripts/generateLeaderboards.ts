@@ -1,6 +1,6 @@
 
 import type { BalancesRaw } from "../src/lib/ao/balances"
-import { balancesRawToFlat } from "../src/lib/model/table"
+import { LeaderBoardFlat, balancesRawToFlat } from "../src/lib/model/table"
 
 export async function generateLeaderboards(balances: BalancesRaw, outputPath: string): Promise<LeaderBoardFlat> {
   const leaderboardFlat = balancesRawToFlat(balances)
@@ -8,5 +8,5 @@ export async function generateLeaderboards(balances: BalancesRaw, outputPath: st
   const leaderboardFlatJson = JSON.stringify(leaderboardFlat)
   await Bun.write(outputPath, leaderboardFlatJson)
   
-  return balances
+  return leaderboardFlat
 }

@@ -1,6 +1,7 @@
 import { file } from "bun";
 import { generateBalances } from "./generateBalances";
 import { generateLeaderboards } from "./generateLeaderboards";
+import { BalancesRaw } from "../src/lib/ao/balances";
 
 async function generate() {
   const balancesContract = await file("fixtures/balances/contract_gAC5hpUPh1v-oPJLnK3Km6-atrYlvI271bI-q0yZOnw.json").json() as BalancesRaw
