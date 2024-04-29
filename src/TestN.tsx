@@ -5,7 +5,9 @@ import { useState } from "react";
 const options = ["100", "100K", "1M"] as const;
 
 export const TestN = () => {
-  const [option, setOption] = useState<typeof options[number]>(options[0]);
+  const [option, /* setOption */] = useState<typeof options[number]>(
+    window.location.search.slice(1) as typeof options[number] || "100"
+  );
 
   const { data } = useQuery({
     queryKey: [`test${option}`],
@@ -20,12 +22,12 @@ export const TestN = () => {
 
   return (
     <>
-      <h1>Test N</h1>
+      {/* <h1>Test N</h1>
       <select value={option} onChange={(e) => setOption(e.target.value as typeof options[number])}>
         {options.map((o) => (
           <option key={o} value={o}>{o}</option>
         ))}
-      </select>
+      </select> */}
       <TableVirtualizedInfiniteProp flatData={data} />
     </>
   )
