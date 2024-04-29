@@ -13,9 +13,20 @@ import {
 } from '@tanstack/react-table'
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { LeaderBoardFlat, LeaderBoardFlatEntry } from '@/lib/model/table'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+import { TableColumnHeader } from './TableColumnHeader'
+import { TableColumnCell } from './TableColumnCell'
 
 type TableVirtualizedInfinitePropProps = {
   flatData: LeaderBoardFlat;
+  filterText?: string;
 }
 
 export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfinitePropProps) {
@@ -27,16 +38,26 @@ export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfin
   const columns = React.useMemo<ColumnDef<LeaderBoardFlatEntry>[]>(
     () => [
       {
+        id: 'rank',
         accessorKey: 'rank',
-        header: 'Rank',
+        header: ({ column }) => <TableColumnHeader column={column} content="Rank" />,
+        cell: ({ column, getValue }) => <TableColumnCell column={column} content={getValue() as string} />,
+        size: 80,
       },
       {
+        id: 'address',
         accessorKey: 'address',
-        header: 'Address',
+        header: ({ column }) => <TableColumnHeader column={column} content="Address" />,
+        cell: ({ column, getValue }) => <TableColumnCell column={column} content={getValue() as string} />,
+        width: "auto",
+        size: 300,
       },
       {
+        id:'score',
         accessorKey: 'score',
-        header: 'Score',
+        header: ({ column }) => <TableColumnHeader column={column} content="Score" />,
+        cell: ({ column, getValue }) => <TableColumnCell column={column} content={getValue() as string} />,
+        size: 200,
       },
     ],
     []
@@ -86,7 +107,7 @@ export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfin
   })
 
   return (
-    <div className="app">
+    <div>
       {process.env.NODE_ENV === 'development' ? (
         <p>
           <strong>Notice:</strong> You are currently running React in
@@ -96,7 +117,7 @@ export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfin
       ) : null}
       ({flatData.length} of {rowCount} rows fetched)
       <div
-        className="container"
+        className="container rounded-md border"
         ref={tableContainerRef}
         style={{
           overflow: 'auto', //our scrollable table container
@@ -105,8 +126,8 @@ export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfin
         }}
       >
         {/* Even though we're still using sematic table tags, we must use CSS grid and flexbox for dynamic row heights */}
-        <table style={{ display: 'grid' }}>
-          <thead
+        <Table style={{ display: 'grid' }}>
+          <TableHeader
             style={{
               display: 'grid',
               position: 'sticky',
@@ -115,18 +136,19 @@ export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfin
             }}
           >
             {table.getHeaderGroups().map(headerGroup => (
-              <tr
+              <TableRow
                 key={headerGroup.id}
                 style={{ display: 'flex', width: '100%' }}
               >
                 {headerGroup.headers.map(header => {
                   return (
-                    <th
+                    <TableHead
                       key={header.id}
                       style={{
                         display: 'flex',
                         width: header.getSize(),
                       }}
+                      className={`${header.column.id === 'score' ? 'justify-end' : ''}`}
                     >
                       <div
                         {...{
@@ -140,18 +162,14 @@ export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfin
                           header.column.columnDef.header,
                           header.getContext()
                         )}
-                        {{
-                          asc: ' 🔼',
-                          desc: ' 🔽',
-                        }[header.column.getIsSorted() as string] ?? null}
                       </div>
-                    </th>
+                    </TableHead>
                   )
                 })}
-              </tr>
+              </TableRow>
             ))}
-          </thead>
-          <tbody
+          </TableHeader>
+          <TableBody
             style={{
               display: 'grid',
               height: `${rowVirtualizer.getTotalSize()}px`, //tells scrollbar how big the table is
@@ -161,7 +179,7 @@ export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfin
             {rowVirtualizer.getVirtualItems().map(virtualRow => {
               const row = rows[virtualRow.index] as Row<LeaderBoardFlatEntry>
               return (
-                <tr
+                <TableRow
                   data-index={virtualRow.index} //needed for dynamic row height measurement
                   ref={node => rowVirtualizer.measureElement(node)} //measure dynamic row height
                   key={row.id}
@@ -174,25 +192,26 @@ export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfin
                 >
                   {row.getVisibleCells().map(cell => {
                     return (
-                      <td
+                      <TableCell
                         key={cell.id}
                         style={{
                           display: 'flex',
                           width: cell.column.getSize(),
                         }}
+                        className={`${cell.column.id === 'score' ? 'justify-end' : ''}`}
                       >
                         {flexRender(
                           cell.column.columnDef.cell,
                           cell.getContext()
                         )}
-                      </td>
+                      </TableCell>
                     )
                   })}
-                </tr>
+                </TableRow>
               )
             })}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
       {/* {isFetching && <div>Fetching More...</div>} */}
     </div>
