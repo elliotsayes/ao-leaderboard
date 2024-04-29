@@ -66,7 +66,7 @@ export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfin
         id:'score',
         accessorKey: 'score',
         header: ({ column }) => <TableColumnHeader column={column} content="Score" />,
-        cell: ({ column, getValue }) => <TableColumnCell column={column} content={getValue() as string} />,
+        cell: ({ column, getValue }) => <TableColumnCell column={column} content={`${getValue() as number} EXP`} />,
         size: 200,
       },
     ],
