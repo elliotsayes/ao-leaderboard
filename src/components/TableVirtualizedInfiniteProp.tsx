@@ -33,7 +33,12 @@ export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfin
   //we need a reference to the scrolling element for logic down below
   const tableContainerRef = React.useRef<HTMLDivElement>(null)
 
-  const [sorting, setSorting] = React.useState<SortingState>([])
+  const [sorting, setSorting] = React.useState<SortingState>([
+    {
+      id: 'score',
+      desc: true,
+    },
+  ])
 
   const columns = React.useMemo<ColumnDef<LeaderBoardFlatEntry>[]>(
     () => [
@@ -43,11 +48,12 @@ export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfin
         header: ({ column }) => <TableColumnHeader column={column} content="Rank" />,
         cell: ({ column, getValue }) => <TableColumnCell column={column} content={getValue() as string} />,
         size: 80,
+        enableSorting: false,
       },
       {
         id: 'address',
         accessorKey: 'address',
-        header: ({ column }) => <TableColumnHeader column={column} content="Address" />,
+        header: ({ column }) => <TableColumnHeader column={column} content="Wallet" />,
         cell: ({ column, getValue }) => <TableColumnCell column={column} content={getValue() as string} />,
         width: "auto",
         size: 300,
@@ -149,7 +155,7 @@ export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfin
                         display: 'flex',
                         width: header.getSize(),
                       }}
-                      className={`${header.column.id === 'score' ? 'justify-end' : ''}`}
+                      className={`h-10 items-end ${header.column.id === 'score' ? 'justify-end' : ''}`}
                     >
                       <div
                         {...{
@@ -199,7 +205,7 @@ export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfin
                           display: 'flex',
                           width: cell.column.getSize(),
                         }}
-                        className={`${cell.column.id === 'score' ? 'justify-end' : ''}`}
+                        className={`px-4 py-3 ${cell.column.id === 'score' ? 'justify-end' : ''}`}
                       >
                         {flexRender(
                           cell.column.columnDef.cell,

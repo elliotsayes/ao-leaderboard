@@ -1,7 +1,7 @@
 import {
-  ArrowDownIcon,
-  ArrowUpIcon,
   CaretSortIcon,
+  CaretDownIcon,
+  CaretUpIcon,
 } from "@radix-ui/react-icons"
 import { Column } from "@tanstack/react-table"
  
@@ -21,7 +21,13 @@ export function TableColumnHeader<TData, TValue>({
   className,
 }: TableColumnHeaderProps<TData, TValue>) {
   if (!column.getCanSort()) {
-    return <div className={cn(className)}>{title}</div>
+    return (
+      <div className={cn("h-8 flex items-center space-x-2", className)}>
+        <MonoTableHeader>
+          {title}
+        </MonoTableHeader>
+      </div>
+    )
   }
  
   return (
@@ -35,9 +41,9 @@ export function TableColumnHeader<TData, TValue>({
           {title}
         </MonoTableHeader>
         {column.getIsSorted() === "desc" ? (
-          <ArrowDownIcon className="ml-2 h-4 w-4" />
+          <CaretDownIcon className="ml-2 h-4 w-4" />
         ) : column.getIsSorted() === "asc" ? (
-          <ArrowUpIcon className="ml-2 h-4 w-4" />
+          <CaretUpIcon className="ml-2 h-4 w-4" />
         ) : (
           <CaretSortIcon className="ml-2 h-4 w-4" />
         )}
