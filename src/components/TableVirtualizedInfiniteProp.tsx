@@ -103,7 +103,7 @@ export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfin
 
   const rowVirtualizer = useVirtualizer({
     count: rows.length,
-    estimateSize: () => 33, //estimate row height for accurate scrollbar dragging
+    estimateSize: () => 49, //estimate row height for accurate scrollbar dragging
     getScrollElement: () => tableContainerRef.current,
     //measure dynamic row height, except in firefox because it measures table border height incorrectly
     measureElement:
