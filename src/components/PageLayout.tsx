@@ -12,7 +12,7 @@ const PageLayout = React.forwardRef<HTMLDivElement, PageLayoutProps>(
   ({ header, altWallpaper, className, ...props }, ref) => {
     return (
       <div
-        className={cn("bg-cover bg-center flex flex-col justify-stretch items-center", altWallpaper ? 'bg-mushy-mush' : 'bg-cosmic-nodes' , className)}
+        className={cn("bg-cover bg-center flex flex-col justify-stretch items-center overflow-clip", altWallpaper ? 'bg-mushy-mush' : 'bg-cosmic-nodes' , className)}
         ref={ref}
         {...props}
       >
