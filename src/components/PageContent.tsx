@@ -4,10 +4,10 @@ interface PageContentProps {
   children: React.ReactNode;
 }
 
-const PageContent = ({ children }: PageContentProps) => {
+export const PageContent = ({ children }: PageContentProps) => {
   return (
     <div className="w-full h-full flex flex-col justify-stretch items-stretch">
-      <div className="flex flex-row justify-between items-center">
+      <div className="flex flex-row justify-between items-center px-[24px] py-[20px]">
         <MonoTitle>
           EXP LEADERBOARD
         </MonoTitle>
@@ -21,5 +21,3 @@ const PageContent = ({ children }: PageContentProps) => {
     </div>
   )
 }
-
-export default PageContent

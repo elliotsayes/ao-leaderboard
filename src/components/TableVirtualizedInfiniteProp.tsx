@@ -109,13 +109,15 @@ export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfin
   return (
     <div>
       {process.env.NODE_ENV === 'development' ? (
-        <p>
-          <strong>Notice:</strong> You are currently running React in
-          development mode. Virtualized rendering performance will be slightly
-          degraded until this application is built for production.
-        </p>
+        <>
+          <p>
+            <strong>Notice:</strong> You are currently running React in
+            development mode. Virtualized rendering performance will be slightly
+            degraded until this application is built for production.
+          </p>
+          ({flatData.length} of {rowCount} rows fetched)
+        </>
       ) : null}
-      ({flatData.length} of {rowCount} rows fetched)
       <div
         ref={tableContainerRef}
         style={{

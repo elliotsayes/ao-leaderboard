@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react"
 
 import { PageLayout } from "./PageLayout"
 import { HeaderItems } from "./HeaderItems"
+import { PageContent } from "./PageContent"
 
 /**
  * Layout of the leaderboard page
@@ -34,5 +35,16 @@ export const Default: Story = {}
 export const WithHeaderItems: Story = {
   args: {
     header: <HeaderItems />,
+  },
+}
+
+export const WithHeaderItemsAndContent: Story = {
+  args: {
+    header: <HeaderItems />,
+    children: (
+      <PageContent>
+        <p>Content</p>
+      </PageContent>
+    )
   },
 }
