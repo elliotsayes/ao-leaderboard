@@ -24,6 +24,7 @@ const baseSize = {
 }
 
 const qualityFactor = 4;
+const sunMoonMultiplier = 4;
 
 const targetValueMap = {
   false: {
@@ -130,7 +131,7 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ scale }: ThemeToggleProps) =>
                     x={baseSize.height * 0.5}
                     y={baseSize.height * 0.5}
                     image={svgs["moon"]}
-                    quality={qualityFactor * scale}
+                    quality={qualityFactor * sunMoonMultiplier * scale}
                     anchor={{x: 0.5, y: 0.5}}
                   />
                   <PixiSvg
@@ -155,7 +156,7 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ scale }: ThemeToggleProps) =>
                     x={baseSize.height * 0.5}
                     y={baseSize.height * 0.5}
                     image={svgs["sun"]}
-                    quality={qualityFactor * scale}
+                    quality={qualityFactor * sunMoonMultiplier * scale}
                     // pivot={{x: -baseSize.height / 2, y: -baseSize.height / 2}}
                     anchor={{x: 0.5, y: 0.5}}
                   />
