@@ -16,13 +16,13 @@ const HeaderItems = React.forwardRef<HTMLDivElement, HeaderItemsProps>(
         {...props}
       >
         <div className="flex flex-row justify-start items-center gap-4">
-          <MonoLink href="#">
+          <MonoLink href="https://ar.io/points">
             Points
           </MonoLink>
           <div
             className="h-[16px] w-px bg-title/[32%]"
           />
-          <MonoLink href="#">
+          <MonoLink href="https://zealy.io/c/ar-io">
             Quests
           </MonoLink>
         </div>
