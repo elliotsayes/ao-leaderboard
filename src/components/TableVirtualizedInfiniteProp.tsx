@@ -117,7 +117,6 @@ export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfin
       ) : null}
       ({flatData.length} of {rowCount} rows fetched)
       <div
-        className="container rounded-md border"
         ref={tableContainerRef}
         style={{
           overflow: 'auto', //our scrollable table container
