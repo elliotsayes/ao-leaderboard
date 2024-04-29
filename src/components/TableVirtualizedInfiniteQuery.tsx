@@ -1,7 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom/client'
-
-import './index.css'
 
 //3 TanStack Libraries!!!
 import {
@@ -21,58 +18,29 @@ import {
   useInfiniteQuery,
 } from '@tanstack/react-query'
 import { useVirtualizer } from '@tanstack/react-virtual'
-
-import { fetchData, Person, PersonApiResponse } from './makeData'
+import { LeaderBoardFlatEntry } from '@/lib/types'
 
 const fetchSize = 50
 
-function App() {
+export function TableVirtualizedInfiniteQuery() {
   //we need a reference to the scrolling element for logic down below
   const tableContainerRef = React.useRef<HTMLDivElement>(null)
 
   const [sorting, setSorting] = React.useState<SortingState>([])
 
-  const columns = React.useMemo<ColumnDef<Person>[]>(
+  const columns = React.useMemo<ColumnDef<LeaderBoardFlatEntry>[]>(
     () => [
       {
-        accessorKey: 'id',
-        header: 'ID',
-        size: 60,
+        accessorKey: 'rank',
+        header: 'Rank',
       },
       {
-        accessorKey: 'firstName',
-        cell: info => info.getValue(),
+        accessorKey: 'address',
+        header: 'Address',
       },
       {
-        accessorFn: row => row.lastName,
-        id: 'lastName',
-        cell: info => info.getValue(),
-        header: () => <span>Last Name</span>,
-      },
-      {
-        accessorKey: 'age',
-        header: () => 'Age',
-        size: 50,
-      },
-      {
-        accessorKey: 'visits',
-        header: () => <span>Visits</span>,
-        size: 50,
-      },
-      {
-        accessorKey: 'status',
-        header: 'Status',
-      },
-      {
-        accessorKey: 'progress',
-        header: 'Profile Progress',
-        size: 80,
-      },
-      {
-        accessorKey: 'createdAt',
-        header: 'Created At',
-        cell: info => info.getValue<Date>().toLocaleString(),
-        size: 200,
+        accessorKey: 'score',
+        header: 'Score',
       },
     ],
     []
@@ -286,17 +254,3 @@ function App() {
     </div>
   )
 }
-
-const rootElement = document.getElementById('root')
-
-if (!rootElement) throw new Error('Failed to find the root element')
-
-const queryClient = new QueryClient()
-
-ReactDOM.createRoot(rootElement).render(
-  <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <App />
-    </QueryClientProvider>
-  </React.StrictMode>
-)
