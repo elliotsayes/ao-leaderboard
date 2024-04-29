@@ -51,7 +51,7 @@ export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfin
         id: 'rank',
         accessorKey: 'rank',
         header: ({ column }) => <TableColumnHeader column={column} content="Rank" />,
-        cell: ({ column, getValue }) => <TableColumnCell column={column} content={getValue() as string} />,
+        cell: ({ column, getValue }) => <TableColumnCell column={column} content={`${getValue() as string}.`} />,
         size: 80,
         enableSorting: false,
       },
