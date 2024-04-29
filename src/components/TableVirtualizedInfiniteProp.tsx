@@ -3,8 +3,10 @@ import React from 'react'
 //3 TanStack Libraries!!!
 import {
   ColumnDef,
+  ColumnFiltersState,
   flexRender,
   getCoreRowModel,
+  getFilteredRowModel,
   getSortedRowModel,
   OnChangeFn,
   Row,
@@ -30,10 +32,9 @@ type TableVirtualizedInfinitePropProps = {
   filterText?: string;
 }
 
-export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfinitePropProps) {
+export function TableVirtualizedInfiniteProp({ flatData, filterText }: TableVirtualizedInfinitePropProps) {
   const fixedWrapperRef = React.useRef<HTMLDivElement>(null)
   const fixedWrapperDimensions = useContainerDimensions(fixedWrapperRef);
-  console.log(fixedWrapperDimensions);
 
   //we need a reference to the scrolling element for logic down below
   const tableContainerRef = React.useRef<HTMLDivElement>(null)
@@ -61,6 +62,8 @@ export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfin
         header: ({ column }) => <TableColumnHeader column={column} content="Wallet" />,
         cell: ({ column, getValue }) => <TableColumnCell column={column} content={getValue() as string} />,
         enableSorting: false,
+        //@ts-expect-error: Defined below
+        filterFn: 'startsWithSensitive',
       },
       {
         id:'score',
@@ -73,14 +76,34 @@ export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfin
     []
   )
 
+  const columnFilters = React.useMemo<ColumnFiltersState>(
+    () => ([
+      {
+        id: 'address',
+        value: filterText,
+      },
+    ]),
+    [filterText]
+  )
+
   const table = useReactTable({
     data: flatData,
     columns,
     state: {
       sorting,
+      columnFilters,
     },
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    filterFns: {
+      startsWithSensitive: (row, columnId, filterValue) =>
+        row
+          .getValue<number | string>(columnId)
+          .toString()
+          // .toLowerCase()
+          .startsWith(filterValue/*.toLowerCase()*/),
+    },
     // manualSorting: true,
     debugTable: true,
   })

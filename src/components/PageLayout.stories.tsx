@@ -43,7 +43,7 @@ export const WithHeaderItemsAndContent: Story = {
     header: <HeaderItems />,
     children: (
       <PageContent>
-        <p>Content</p>
+        {() => <p>Content</p>}
       </PageContent>
     )
   },
