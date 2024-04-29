@@ -2,7 +2,7 @@ import { Stage } from "@pixi/react";
 import { Container, Sprite } from "@pixi/react-animated";
 import { Spring } from "@react-spring/web";
 import { PixiSvg } from "./PixiSvg";
-import { Graphics } from "pixi.js";
+import { Graphics, MaskData } from "pixi.js";
 import { useMemo } from "react";
 
 const getSvgPath = (graphicName: string) => `./assets/graphics/${graphicName}.svg`
@@ -61,7 +61,7 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ value, onValueChange, scale }
     return new Graphics()
       .beginFill(0xffffff)
       .drawRoundedRect(0, 0, scaledSize.width, scaledSize.height, scaledSize.height / 2)
-      .endFill();
+      .endFill() as unknown as MaskData;
   }, [scaledSize]);
 
   return (
