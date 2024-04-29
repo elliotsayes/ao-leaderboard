@@ -4,6 +4,7 @@ import { Spring } from "@react-spring/web";
 import { PixiSvg } from "./PixiSvg";
 import { Graphics, MaskData } from "pixi.js";
 import { useMemo } from "react";
+import { useBackgroundToggle } from "@/hooks/useBackgroundToggle";
 
 const getSvgPath = (graphicName: string) => `./assets/graphics/${graphicName}.svg`
 
@@ -42,12 +43,12 @@ const targetValueMap = {
 };
 
 interface ThemeToggleProps {
-  value: boolean;
-  onValueChange: (value: boolean) => void;
   scale: number;
 }
 
-const ThemeToggle: React.FC<ThemeToggleProps> = ({ value, onValueChange, scale }: ThemeToggleProps) => {
+const ThemeToggle: React.FC<ThemeToggleProps> = ({ scale }: ThemeToggleProps) => {
+  const { altBackground: value, setAltBackground } = useBackgroundToggle()
+  
   const targetValues = targetValueMap[value ? "true" : "false"];
   
   const scaledSize = useMemo(() => ({
@@ -68,7 +69,7 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ value, onValueChange, scale }
     <button
       onClick={() => {
         console.log("clicked")
-        onValueChange(!value)
+        setAltBackground(!value)
       }}
     >
       <Stage

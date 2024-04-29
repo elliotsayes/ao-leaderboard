@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { fn } from "@storybook/test";
 
 import { ThemeToggle } from "./ThemeToggle"
-import React from "react";
+import { BackgroundToggleProvider } from "@/hooks/useBackgroundToggle";
 
 /**
  * ThemeToggle container
@@ -15,43 +14,24 @@ const meta = {
     layout: "centered",
   },
   argTypes: {
-    value: {
-      control: "boolean",
-    },
     scale: {
       control: "number",
     },
   },
   args: {
-    value: false,
-    onValueChange: fn(),
     scale: 2,
-  }
+  },
+  decorators: [
+    (Story) => (
+      <BackgroundToggleProvider>
+        <Story />
+      </BackgroundToggleProvider>
+    ),
+  ]
 } satisfies Meta<typeof ThemeToggle>
 
 export default meta
 
 type Story = StoryObj<typeof meta>
 
-const TestBed = ({scale}: {scale: number}) => {
-  const [value, setValue] = React.useState(false);
-  return (
-    <ThemeToggle
-      value={value}
-      onValueChange={setValue}
-      scale={scale}
-    />
-  );
-} 
-
-export const Interactive: Story = {
-  render: (args) => <TestBed scale={args.scale} />,
-}
-
-export const Inactive: Story = {}
-
-export const Active: Story = {
-  args: {
-    value: true,
-  },
-}
+export const Default: Story = {}

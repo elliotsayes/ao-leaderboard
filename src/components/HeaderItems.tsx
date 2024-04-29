@@ -27,8 +27,6 @@ const HeaderItems = React.forwardRef<HTMLDivElement, HeaderItemsProps>(
           </MonoLink>
         </div>
         <ThemeToggle
-          value={false}
-          onValueChange={() => console.log("clicked")}
           scale={1.2}
         />
       </div>
