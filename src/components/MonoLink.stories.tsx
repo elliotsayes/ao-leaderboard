@@ -29,10 +29,10 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
 
-export const Points: Story = {
+export const Exp: Story = {
   args: {
-    children: "Points",
-    href: "https://ar.io/points",
+    children: "EXP",
+    href: "https://ar.io/experience",
   },
 }
 
