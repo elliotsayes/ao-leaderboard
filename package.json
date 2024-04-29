@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "bunx --bun vite",
-    "build": "tsc && vite build",
+    "build": "bun generate && tsc && vite build",
     "test": "bun test",
-    "generate": "bun scripts/generate.ts",
+    "generate": "bun scripts/generate.ts && cp fixtures/leaderboards/gen_*.json public",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006 --no-open",
