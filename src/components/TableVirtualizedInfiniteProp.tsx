@@ -209,7 +209,7 @@ export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfin
                         key={cell.id}
                         style={{
                           display: 'flex',
-                          width: isAddress ? "auto" : cell.column.getSize(),
+                          width: cell.column.getSize(),
                         }}
                         className={`px-4 py-3 ${isAddress ? 'flex-grow' : ''} ${isScore ? 'justify-end' : ''}`}
                       >
