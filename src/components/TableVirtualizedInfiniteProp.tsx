@@ -139,6 +139,7 @@ export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfin
               <TableRow
                 key={headerGroup.id}
                 style={{ display: 'flex', width: '100%' }}
+                className='border-b-[1px] border-[1px] border-section-border/[8%]'
               >
                 {headerGroup.headers.map(header => {
                   const isAddress = header.column.id === 'address'
@@ -191,7 +192,7 @@ export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfin
                     transform: `translateY(${virtualRow.start}px)`, //this should always be a `style` as it changes on scroll
                     width: '100%',
                   }}
-                  className=' justify-stretch'
+                  className='justify-stretch border-section-border/[8%]'
                 >
                   {row.getVisibleCells().map(cell => {
                     const isAddress = cell.column.id === 'address'
