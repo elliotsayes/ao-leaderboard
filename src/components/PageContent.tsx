@@ -11,7 +11,7 @@ export const PageContent = ({ children }: PageContentProps) => {
 
   return (
     <div className="w-full h-full flex flex-col justify-stretch items-stretch">
-      <div className="flex flex-row justify-between items-center px-[24px] py-[20px]">
+      <div className="flex flex-col xs:flex-row justify-start items-stretch xs:justify-between xs:items-center px-[24px] py-[20px] gap-4">
         <MonoTitle>
           EXP LEADERBOARD
         </MonoTitle>
