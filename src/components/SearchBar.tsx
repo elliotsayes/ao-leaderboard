@@ -17,7 +17,7 @@ export const SearchBar = ({ value, onChange }: SearchBarProps) => {
     <div className="group flex flex-row items-center">
       <input
         ref={inputRef}
-        className={`w-full h-full px-3 py-2 text-sm bg-transparent outline-none border-transparent border-solid border-2 rounded-sm group-hover:outline-section-border/10 ${hasText ? "border-section-border/40" : "focus:border-section-border/20"}`}
+        className={`w-full h-full px-3 py-2 text-sm bg-transparent outline-none border-solid border-2 rounded-sm group-hover:outline-section-border/10 ${hasText ? "border-section-border/40" : "border-transparent focus:border-section-border/20"}`}
         type="text"
         value={value}
         onChange={(e) => onChange(e.target.value)}
@@ -33,7 +33,7 @@ export const SearchBar = ({ value, onChange }: SearchBarProps) => {
         />
         {hasText && (
           <div
-            className="absolute top-0 right-0 z-10 bg-section-background/10 rounded-sm cursor-pointer"
+            className="absolute top-0 right-0 p-0.5 z-10 bg-section-background/10 rounded-sm cursor-pointer"
             onClick={() => onChange("")}
           >
             <Cross2Icon
