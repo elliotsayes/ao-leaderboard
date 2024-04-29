@@ -22,7 +22,7 @@ export function TableColumnHeader<TData, TValue>({
 }: TableColumnHeaderProps<TData, TValue>) {
   if (!column.getCanSort()) {
     return (
-      <div className={cn("h-8 flex items-center space-x-2", className)}>
+      <div className={cn("h-8 flex items-center px-2", className)}>
         <MonoTableHeader>
           {title}
         </MonoTableHeader>

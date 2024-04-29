@@ -17,7 +17,7 @@ export function TableColumnCell<TData, TValue>({
   const isScore = column.id === "score"
  
   return (
-    <div className={cn("flex items-center space-x-2 text-nowrap", className)}>
+    <div className={cn("flex items-center px-2 text-nowrap", className)}>
       <MonoTableBody highlight={isScore}>
         {content}
       </MonoTableBody>
