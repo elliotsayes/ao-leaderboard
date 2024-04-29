@@ -57,6 +57,7 @@ export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfin
         cell: ({ column, getValue }) => <TableColumnCell column={column} content={getValue() as string} />,
         width: "auto",
         size: 300,
+        enableSorting: false,
       },
       {
         id:'score',
@@ -148,6 +149,8 @@ export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfin
                 style={{ display: 'flex', width: '100%' }}
               >
                 {headerGroup.headers.map(header => {
+                  const isAddress = header.column.id === 'address'
+                  const isScore = header.column.id ==='score'
                   return (
                     <TableHead
                       key={header.id}
@@ -155,7 +158,7 @@ export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfin
                         display: 'flex',
                         width: header.getSize(),
                       }}
-                      className={`h-10 items-end ${header.column.id === 'score' ? 'justify-end' : ''}`}
+                      className={`h-10 items-end ${isAddress ? 'flex-grow' : ''} ${isScore ? 'justify-end' : ''}`}
                     >
                       <div
                         {...{
@@ -196,16 +199,19 @@ export function TableVirtualizedInfiniteProp({ flatData }: TableVirtualizedInfin
                     transform: `translateY(${virtualRow.start}px)`, //this should always be a `style` as it changes on scroll
                     width: '100%',
                   }}
+                  className=' justify-stretch'
                 >
                   {row.getVisibleCells().map(cell => {
+                    const isAddress = cell.column.id === 'address'
+                    const isScore = cell.column.id ==='score'
                     return (
                       <TableCell
                         key={cell.id}
                         style={{
                           display: 'flex',
-                          width: cell.column.getSize(),
+                          width: isAddress ? "auto" : cell.column.getSize(),
                         }}
-                        className={`px-4 py-3 ${cell.column.id === 'score' ? 'justify-end' : ''}`}
+                        className={`px-4 py-3 ${isAddress ? 'flex-grow' : ''} ${isScore ? 'justify-end' : ''}`}
                       >
                         {flexRender(
                           cell.column.columnDef.cell,
