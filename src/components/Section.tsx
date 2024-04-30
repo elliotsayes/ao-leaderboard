@@ -9,7 +9,7 @@ const Section = React.forwardRef<HTMLDivElement, SectionProps>(
   ({ className, ...props }, ref) => {
     return (
       <div
-        className={cn("bg-section-backdrop/[75%] py-[5px] px-[11px] border-section-border/[32%] border-[0.5px] rounded-[6px]", className)}
+        className={cn("bg-section-backdrop/[85%] py-[5px] px-[11px] border-section-border/[32%] border-[0.5px] rounded-[6px]", className)}
         ref={ref}
         {...props}
       />
