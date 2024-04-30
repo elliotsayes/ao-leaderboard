@@ -13,7 +13,7 @@ const PageLayout = React.forwardRef<HTMLDivElement, PageLayoutProps>(
     return (
       <>
         <div
-          className={cn("bg-cover bg-center flex flex-col justify-stretch items-center overflow-clip", altWallpaper ? 'bg-mushy-mush' : 'bg-cosmic-nodes' , className)}
+          className={cn("bg-cover bg-center flex flex-col justify-stretch items-center overflow-clip", altWallpaper ? 'bg-mush-dark' : 'bg-nebula-dark' , className)}
           ref={ref}
           {...props}
         >
@@ -26,8 +26,8 @@ const PageLayout = React.forwardRef<HTMLDivElement, PageLayoutProps>(
             </Section>
           </div>
         </div>
-        <link rel="preload" as="image" href="assets/wallpaper/2d80cc4e03baa6aeebbc0978ce747457dcd68296.webp" />
-        <link rel="preload" as="image" href="assets/wallpaper/315d624e6712a8a636acea70231b2e3c5420391b.webp" />
+        <link rel="preload" as="image" href="assets/wallpaper/nebula_dark.png" />
+        <link rel="preload" as="image" href="assets/wallpaper/mush_dark.png" />
       </>
     )
   }
