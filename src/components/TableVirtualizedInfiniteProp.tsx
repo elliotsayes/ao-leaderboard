@@ -194,7 +194,7 @@ export function TableVirtualizedInfiniteProp({ flatData, addressFilter }: TableV
                         display: 'flex',
                         width: header.getSize(),
                       }}
-                      className={`h-10 items-end ${isAddress ? 'flex-grow' : ''} ${isScore ? 'justify-end' : ''}`}
+                      className={`h-10 items-center ${isAddress ? 'flex-grow' : ''} ${isScore ? 'justify-end' : ''}`}
                     >
                       <div
                         {...{
