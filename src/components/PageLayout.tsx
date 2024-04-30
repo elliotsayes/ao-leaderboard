@@ -18,7 +18,7 @@ const PageLayout = React.forwardRef<HTMLDivElement, PageLayoutProps>(
           {...props}
         >
           <div className="h-dvh w-dvw flex flex-col justify-stretch items-stretch gap-5 px-5 py-5 max-w-screen-lg">
-            <Section className="px-8 py-3">
+            <Section className="px-4 xxs:px-8 py-3">
               {header}
             </Section>
             <Section className="flex-1 max-h-none">
