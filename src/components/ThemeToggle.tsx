@@ -3,7 +3,7 @@ import { Container, Sprite } from "@pixi/react-animated";
 import { Spring } from "@react-spring/web";
 import { PixiSvg } from "./PixiSvg";
 import { Graphics, MaskData } from "pixi.js";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useBackgroundToggle } from "@/hooks/useBackgroundToggle";
 
 const getSvgPath = (graphicName: string) => `./assets/graphics/${graphicName}.svg`
@@ -15,6 +15,7 @@ const svgs = {
   "sun": getSvgPath("sun"),
   "mushroom": getSvgPath("mushroom"),
   "stars": getSvgPath("stars"),
+  "spikysun": getSvgPath("spikysun")
 } as const;
 
 const baseSize = {
@@ -65,6 +66,14 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ scale }: ThemeToggleProps) =>
       .drawRoundedRect(0, 0, scaledSize.width, scaledSize.height, scaledSize.height / 2)
       .endFill() as unknown as MaskData;
   }, [scaledSize]);
+  
+  const [timeStep, setTimeStep] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeStep((prev) => (prev + 0.01)%1);
+    }, 1000 / 60);
+    return () => clearInterval(interval);
+  }, [])
 
   return (
     <button
@@ -109,10 +118,20 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ scale }: ThemeToggleProps) =>
                 <PixiSvg
                   x={baseSize.width * 0.8}
                   y={baseSize.height * 0.5}
-                  alpha={springProps.arioAlpha}
+                  alpha={springProps.arioAlpha.get() * 0.5 * Math.sin(timeStep * Math.PI) + 0.5}
                   image={svgs["stars"]}
                   quality={qualityFactor * scale}
                   anchor={{x: 0.5, y: 0.5}}
+                />
+                <PixiSvg
+                  x={baseSize.width * -0.25}
+                  y={baseSize.height * 0.5}
+                  alpha={springProps.sunAlpha}
+                  image={svgs["spikysun"]}
+                  quality={qualityFactor * scale}
+                  anchor={{x: 0.5, y: 0.5}}
+                  scale={0.2}
+                  rotation={(-timeStep / 15) * Math.PI * 3}
                 />
                 <Container
                   y={baseSize.height * 0.5}
