@@ -16,7 +16,7 @@ import {
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { LeaderBoardFlat, LeaderBoardFlatEntry } from '@/lib/model/table'
 import {
-  Table,
+  // Table,
   TableBody,
   TableCell,
   TableHead,
@@ -166,13 +166,16 @@ export function TableVirtualizedInfiniteProp({ flatData, addressFilter }: TableV
         }}
       >
         {/* Even though we're still using sematic table tags, we must use CSS grid and flexbox for dynamic row heights */}
-        <Table style={{ display: 'grid' }}>
+        <table style={{ display: 'grid' }}>
           <TableHeader
             style={{
               display: 'grid',
               position: 'sticky',
               top: 0,
               zIndex: 1,
+              // backdrop blur filter
+              background: 'rgba(0, 0, 0, 0.1)',
+              backdropFilter: 'blur(3px)',
             }}
           >
             {table.getHeaderGroups().map(headerGroup => (
@@ -257,7 +260,7 @@ export function TableVirtualizedInfiniteProp({ flatData, addressFilter }: TableV
               )
             })}
           </TableBody>
-        </Table>
+        </table>
       </div>
     </div>
   )
