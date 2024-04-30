@@ -17,7 +17,7 @@ const HeaderItems = React.forwardRef<HTMLDivElement, HeaderItemsProps>(
       >
         <div className="flex flex-row justify-start items-center gap-6 xxs:gap-10">
           <a href="https://ar.io" target="_blank" referrerPolicy="no-referrer">
-            <img src="/assets/graphics/ar-io-header.png" width={25} className="pb-1" />
+            <img src="/assets/graphics/ar-io-header.png" width={25} className="logo transition-all" alt="AR.IO Logo" />
           </a>
           <div className="flex flex-row justify-start items-center gap-4">
             <MonoLink href="https://ar.io/experience">
