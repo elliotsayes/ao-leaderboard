@@ -91,10 +91,10 @@ module.exports = {
         mono: "IBM Plex Mono, monospace",
       },
       backgroundImage: {
-        'cosmic-nodes': "url('assets/wallpaper/2d80cc4e03baa6aeebbc0978ce747457dcd68296.webp')",
-        'mushy-mush': "url('assets/wallpaper/315d624e6712a8a636acea70231b2e3c5420391b.webp')",
-        'nebula-dark': "url('assets/wallpaper/nebula_dark.png')",
-        'mush-dark': "url('assets/wallpaper/mush_dark.png')",
+        'cosmic-nodes': "url('wallpaper/2d80cc4e03baa6aeebbc0978ce747457dcd68296.webp')",
+        'mushy-mush': "url('wallpaper/315d624e6712a8a636acea70231b2e3c5420391b.webp')",
+        'nebula-dark': "url('wallpaper/nebula_dark.png')",
+        'mush-dark': "url('wallpaper/mush_dark.png')",
       },
       screens: {
         "xs": "440px",
