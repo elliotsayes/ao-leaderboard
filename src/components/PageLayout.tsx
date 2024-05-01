@@ -14,10 +14,12 @@ const PageLayout = React.forwardRef<HTMLDivElement, PageLayoutProps>(
     return (
       <>
         <div
-          className={cn("bg-cover bg-center flex flex-col justify-stretch items-center overflow-clip", altWallpaper ? 'bg-mush-dark' : 'bg-nebula-dark' , className)}
+          className={cn("relative flex flex-col justify-stretch items-center overflow-clip", className)}
           ref={ref}
           {...props}
         >
+        <div className={`absolute -z-20 top-0 bottom-0 left-0 right-0 bg-cover bg-center bg-nebula-dark`} />
+        <div className={`absolute -z-10 top-0 bottom-0 left-0 right-0 bg-cover bg-center bg-mush-dark ${altWallpaper ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`} />
           <div className="h-dvh w-dvw flex flex-col flex-grow justify-center items-stretch max-w-[1024px]">
             <div className="flex flex-col flex-grow max-h-[1024px] px-2 pt-5 pb-4 lg:px-10 2xl:px-20 2xl:pt-20 2xl:pb-24">
               <Section className="px-4 xxs:px-8 py-3">
@@ -40,8 +42,6 @@ const PageLayout = React.forwardRef<HTMLDivElement, PageLayoutProps>(
             </div>
           </div>
         </div>
-        <link rel="preload" as="image" href="assets/wallpaper/nebula_dark.png" />
-        <link rel="preload" as="image" href="assets/wallpaper/mush_dark.png" />
       </>
     )
   }
