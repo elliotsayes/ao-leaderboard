@@ -21,11 +21,7 @@ export function LeaderboardDataLoader(props: LeaderboardDataLoaderProps) {
   if (isError) {
     return <div>Error</div>
   }
-
-  if (!data) {
-    return <div>No data</div>
-  }
-
+  
   return props.children(data)
 }
 
