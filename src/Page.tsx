@@ -5,7 +5,7 @@ import { useBackgroundToggle } from "./hooks/useBackgroundToggle";
 import { config } from "./config";
 import { Suspense, lazy } from "react";
 import { LoadingSpinner } from "./components/LoadingSpinner";
-import { TableVirtualizedInfiniteProp } from "./components/TableVirtualizedInfiniteProp";
+const TableVirtualizedInfiniteProp = lazy(() => import("./components/TableVirtualizedInfiniteProp"))
 const LeaderboardDataLoader = lazy(() => import("./components/LeaderboardDataLoader"))
 
 export function Page() {
