@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { MonoTitle } from "./MonoTitle"
 import { SearchBar } from "./SearchBar";
-import { MonoLink } from "./MonoLink";
 
 interface PageContentProps {
   children: (filterValue?: string) => React.ReactNode;
@@ -23,17 +22,6 @@ export const PageContent = ({ children }: PageContentProps) => {
         </div>
       </div>
       {children(filterValue)}
-      <div className="flex flex-row justify-center gap-2 py-2">
-        <MonoLink href="https://discord.gg/7zUPfN4D6g">
-          Discord
-        </MonoLink>
-        <MonoLink href="https://twitter.com/ar_io_network">
-          Twitter
-        </MonoLink>
-        <MonoLink href="https://ar.io">
-          Home (ar.io)
-        </MonoLink>
-      </div>
     </div>
   )
 }
