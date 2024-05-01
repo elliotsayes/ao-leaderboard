@@ -19,7 +19,7 @@ const PageLayout = React.forwardRef<HTMLDivElement, PageLayoutProps>(
           {...props}
         >
           <div className="h-dvh w-dvw flex flex-col flex-grow justify-center items-stretch max-w-[1024px]">
-            <div className="flex flex-col flex-grow max-h-[1024px] px-2 xs:px-5 pt-5 pb-4 lg:px-10 lg:pt-10 lg:pb-14 2xl:px-20 2xl:pt-20 2xl:pb-24">
+            <div className="flex flex-col flex-grow max-h-[1024px] px-2 pt-5 pb-4 lg:px-10 2xl:px-20 2xl:pt-20 2xl:pb-24">
               <Section className="px-4 xxs:px-8 py-3">
                 {header}
               </Section>
