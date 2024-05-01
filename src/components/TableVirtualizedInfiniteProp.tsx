@@ -58,7 +58,7 @@ export function TableVirtualizedInfiniteProp({ flatData, addressFilter }: TableV
         header: ({ column }) => <TableColumnHeader column={column} content="Rank" />,
         cell: ({ column, getValue }) => <TableColumnCell column={column} content={`${getValue() as string}.`} />,
         size: 60,
-        enableSorting: false,
+        enableSorting: true,
       },
       {
         id: 'address',
