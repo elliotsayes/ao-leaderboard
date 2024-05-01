@@ -26,7 +26,7 @@ const PageLayout = React.forwardRef<HTMLDivElement, PageLayoutProps>(
               <Section className="mt-5 flex-1 max-h-none">
                 {props.children}
               </Section>
-              <div className="flex flex-row justify-center gap-2 pt-3">
+              <div className="flex flex-row justify-center gap-2 pt-4">
                 <MonoLink href="https://discord.gg/7zUPfN4D6g">
                   Discord
                 </MonoLink>
