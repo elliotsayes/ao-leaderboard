@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { TableVirtualizedInfiniteProp } from "./components/TableVirtualizedInfiniteProp";
 import { useState } from "react";
+import { LoadingSpinner } from "./components/LoadingSpinner";
 
 const options = ["100", "100K", "1M"] as const;
 
@@ -22,7 +23,7 @@ export const TestN = ({ addressFilter }: Props) => {
     },
   })
 
-  if (!data) return <div>Loading...</div>
+  if (!data) return <LoadingSpinner />
 
   return (
     <>
