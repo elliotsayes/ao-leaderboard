@@ -66,8 +66,8 @@ export function TableVirtualizedInfiniteProp({ flatData, addressFilter }: TableV
         header: ({ column }) => <TableColumnHeader column={column} content="Wallet" />,
         cell: ({ column, row, getValue }) => {
           const value = getValue() as string;
-          const isSmall = fixedWrapperDimensions.width < 650;
-          const isVerySmall = fixedWrapperDimensions.width < 550;
+          const isSmall = fixedWrapperDimensions.width < 640;
+          const isVerySmall = fixedWrapperDimensions.width < 360;
           const displayMode: AddressDisplayMode = isVerySmall ? 'very-small' : isSmall ? 'small' : 'normal';
           const showBottom = row.index === 0;
           return <TableColumnCellAddress column={column} content={value} displayMode={displayMode} showBottom={showBottom} />
@@ -82,7 +82,7 @@ export function TableVirtualizedInfiniteProp({ flatData, addressFilter }: TableV
         accessorKey: 'score',
         header: ({ column }) => <TableColumnHeader column={column} content="Score" />,
         cell: ({ column, getValue }) => {
-          const isVerySmall = fixedWrapperDimensions.width < 400;
+          const isVerySmall = fixedWrapperDimensions.width < 440;
           const numberText = isVerySmall 
             ? compactNumberFormatter.format(getValue() as number)
             : numberFormatter.format(getValue() as number)

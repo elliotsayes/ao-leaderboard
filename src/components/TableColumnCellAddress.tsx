@@ -34,7 +34,7 @@ export function TableColumnCellAddress<TData, TValue>({
     ? `${content.slice(0, 6)}...${content.slice(-4)}` 
     : (
         displayMode === "small"
-        ? `${content.slice(0, 12)}...${content.slice(-10)}`
+        ? `${content.slice(0, 10)}...${content.slice(-8)}`
         : content
     )
 
