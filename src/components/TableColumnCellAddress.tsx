@@ -27,8 +27,8 @@ export function TableColumnCellAddress<TData, TValue>({
   // column,
   content,
   className,
-  displayMode,
-  showBottom,
+  displayMode = "normal",
+  showBottom = false,
 }: TableColumnCellAddressProps<TData, TValue>) {
   const displayValue = displayMode === "very-small"
     ? `${content.slice(0, 6)}...${content.slice(-4)}` 
@@ -60,28 +60,36 @@ export function TableColumnCellAddress<TData, TValue>({
 
   const [isCopiedText, setIsCopiedText] = useState(false)
   const copyText = isCopiedText ? "Copied!" : "Copy"
+
+  const addressTextComponent = (
+    <MonoTableBody className="hover:underline">
+      <a href={`https://www.ao.link/entity/${content}`} target="_blank" referrerPolicy="no-referrer">
+        {displayValue}
+      </a>
+    </MonoTableBody>
+  )
   
   return (
     <div className={cn("flex items-center px-2 text-nowrap z-40", className)}>
       <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger>
-            <MonoTableBody className="hover:underline">
-              <a href={`https://www.ao.link/entity/${content}`} target="_blank" referrerPolicy="no-referrer">
-                {displayValue}
-              </a>
-            </MonoTableBody>
-          </TooltipTrigger>
-          <TooltipContent
-            side={showBottom ? "bottom" : "top"}
-            align="start"
-            alignOffset={-80}
-          >
-            <MonoTableBody>
-              {content}
-            </MonoTableBody>
-          </TooltipContent>
-        </Tooltip>
+        {
+          displayMode === "normal" ? addressTextComponent : (
+            <Tooltip>
+              <TooltipTrigger>
+                {addressTextComponent}
+              </TooltipTrigger>
+              <TooltipContent
+                side={showBottom ? "bottom" : "top"}
+                align="start"
+                alignOffset={-80}
+              >
+                <MonoTableBody>
+                  {content}
+                </MonoTableBody>
+              </TooltipContent>
+            </Tooltip>
+          )
+        }
         <Tooltip
           open={showCopyTooltip}
           onOpenChange={(e) => {
