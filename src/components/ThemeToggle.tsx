@@ -198,3 +198,4 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ scale }: ThemeToggleProps) =>
 }
 
 export { ThemeToggle }
+export default ThemeToggle

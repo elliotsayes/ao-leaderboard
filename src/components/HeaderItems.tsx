@@ -1,7 +1,8 @@
 import { cn } from "@/lib/utils"
-import React from "react"
+import React, { Suspense, lazy } from "react"
 import { MonoLink } from "./MonoLink";
-import { ThemeToggle } from "./ThemeToggle";
+// import { ThemeToggle } from "./ThemeToggle";
+const ThemeToggle = lazy(() => import("./ThemeToggle"))
 
 export interface HeaderItemsProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -31,9 +32,11 @@ const HeaderItems = React.forwardRef<HTMLDivElement, HeaderItemsProps>(
             </MonoLink>
           </div>
         </div>
-        <ThemeToggle
-          scale={1.2}
-        />
+        <Suspense fallback={<div className="h-[26.5px]" />}>
+          <ThemeToggle
+            scale={1.2}
+          />
+        </Suspense>
       </div>
     )
   }

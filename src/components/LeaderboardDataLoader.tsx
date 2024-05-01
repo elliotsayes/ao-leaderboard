@@ -1,7 +1,6 @@
 import { fetchBalances } from "@/lib/ao/balances";
 import { LeaderBoardFlat, balancesRawToFlat } from "@/lib/model/table";
-import { useQuery } from "@tanstack/react-query";
-import { LoadingSpinner } from "./LoadingSpinner";
+import { useSuspenseQuery } from "@tanstack/react-query";
 
 interface LeaderboardDataLoaderProps {
   contractId: string;
@@ -9,7 +8,7 @@ interface LeaderboardDataLoaderProps {
 }
 
 export function LeaderboardDataLoader(props: LeaderboardDataLoaderProps) {
-  const { data, isLoading, isError } = useQuery({
+  const { data, isError } = useSuspenseQuery({
     queryKey: ["aoBalance", props.contractId],
     queryFn: async () => {
       const response = await fetchBalances(props.contractId);
@@ -21,14 +20,6 @@ export function LeaderboardDataLoader(props: LeaderboardDataLoaderProps) {
 
   if (isError) {
     return <div>Error</div>
-  }
-
-  if (isLoading) {
-    return (
-      <div className="flex flex-row flex-grow justify-center items-center pb-20">
-        <LoadingSpinner />
-      </div>
-    )
   }
 
   if (!data) {
