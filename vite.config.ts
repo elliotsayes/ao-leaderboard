@@ -9,7 +9,7 @@ export default defineConfig({
   plugins: [
     react(),
     webfontDownload([
-      "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@0,400;0,500;0,600&display=swap",
+      "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600&display=swap",
     ]),
     imagetools(),
   ],
