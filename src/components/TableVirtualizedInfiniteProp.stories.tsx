@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { TableVirtualizedInfiniteProp } from "./TableVirtualizedInfiniteProp"
 
 import ContractData from "../../fixtures/leaderboards/contract_gAC5hpUPh1v-oPJLnK3Km6-atrYlvI271bI-q0yZOnw.json"
-import Gen100Data from "../../fixtures/leaderboards/gen_100.json"
+// import Gen100Data from "../../fixtures/leaderboards/gen_100.json"
 // import Gen100KData from "../../fixtures/leaderboards/gen_100K.json"
 // import Gen1MData from "../../fixtures/leaderboards/gen_1M.json"
 
@@ -13,7 +13,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const storyData = {
   "default": ContractData,
-  "100": Gen100Data,
+  // "100": Gen100Data,
   // "100K": Gen100KData,
   // "1M": Gen1MData,
 };
@@ -40,11 +40,11 @@ export const Default: Story = {
   }
 }
 
-export const Gen100: Story = {
-  args: {
-    flatData: storyData["100"],
-  }
-}
+// export const Gen100: Story = {
+//   args: {
+//     flatData: storyData["100"],
+//   }
+// }
 
 // export const Gen100K: Story = {
 //   args: {
