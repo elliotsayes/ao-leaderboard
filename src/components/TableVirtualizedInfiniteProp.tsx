@@ -26,6 +26,7 @@ import {
 import { TableColumnHeader } from './TableColumnHeader'
 import { TableColumnCell } from './TableColumnCell'
 import { useContainerDimensions } from '@/hooks/useContainterDimensions'
+import { AddressDisplayMode, TableColumnCellAddress } from './TableColumnCellAddress'
 
 const numberFormatter = Intl.NumberFormat('en', { notation: "standard" });
 const compactNumberFormatter = Intl.NumberFormat('en', { notation: "compact", minimumSignificantDigits: 3, maximumSignificantDigits: 3 });
@@ -56,22 +57,23 @@ export function TableVirtualizedInfiniteProp({ flatData, addressFilter }: TableV
         accessorKey: 'rank',
         header: ({ column }) => <TableColumnHeader column={column} content="Rank" />,
         cell: ({ column, getValue }) => <TableColumnCell column={column} content={`${getValue() as string}.`} />,
-        size: 80,
+        size: 60,
         enableSorting: false,
       },
       {
         id: 'address',
         accessorKey: 'address',
         header: ({ column }) => <TableColumnHeader column={column} content="Wallet" />,
-        cell: ({ column, getValue }) => {
+        cell: ({ column, row, getValue }) => {
           const value = getValue() as string;
           const isSmall = fixedWrapperDimensions.width < 650;
           const isVerySmall = fixedWrapperDimensions.width < 550;
-          const displayValue = isSmall ? ( isVerySmall ? `${value.slice(0, 6)}...${value.slice(-4)}` : `${value.slice(0, 12)}...${value.slice(-10)}` ) : value;
-          return <TableColumnCell column={column} content={displayValue} />
+          const displayMode: AddressDisplayMode = isVerySmall ? 'very-small' : isSmall ? 'small' : 'normal';
+          const showBottom = row.index === 0;
+          return <TableColumnCellAddress column={column} content={value} displayMode={displayMode} showBottom={showBottom} />
         },
         enableSorting: false,
-        size: 120,
+        size: 140,
         //@ts-expect-error: Defined below
         filterFn: 'startsWithSensitive',
       },
