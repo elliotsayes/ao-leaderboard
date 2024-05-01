@@ -1,3 +1,3 @@
 export const config = {
-  processIdLeaderboardContract: "gAC5hpUPh1v-oPJLnK3Km6-atrYlvI271bI-q0yZOnw",
+  processIdLeaderboardContract: "aYrCboXVSl1AXL9gPFe3tfRxRf0ZmkOXH65mKT0HHZw",
 }
