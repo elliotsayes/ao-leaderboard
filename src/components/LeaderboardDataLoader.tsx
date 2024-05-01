@@ -28,3 +28,5 @@ export function LeaderboardDataLoader(props: LeaderboardDataLoaderProps) {
 
   return props.children(data)
 }
+
+export default LeaderboardDataLoader;

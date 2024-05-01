@@ -267,5 +267,3 @@ export function TableVirtualizedInfiniteProp({ flatData, addressFilter }: TableV
     </div>
   )
 }
-
-export default TableVirtualizedInfiniteProp;
