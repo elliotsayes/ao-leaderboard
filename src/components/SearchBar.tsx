@@ -20,9 +20,9 @@ export const SearchBar = ({ value, onChange }: SearchBarProps) => {
         placeholder="Search Wallet"
       />
       <MagnifyingGlassIcon
-        width={32}
-        height={32}
-        className="absolute right-1 z-10 my-auto text-section-text group-hover:text-section-text/10 pointer-events-none"
+        width={24}
+        height={24}
+        className="absolute right-2 z-10 my-auto text-section-text group-hover:text-section-text/10 pointer-events-none"
       />
     </div>
   )
