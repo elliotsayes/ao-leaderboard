@@ -19,22 +19,22 @@ const PageLayout = React.forwardRef<HTMLDivElement, PageLayoutProps>(
           {...props}
         >
           <div className="h-dvh w-dvw flex flex-col flex-grow justify-center items-stretch max-w-[1440px]">
-            <div className="flex flex-col flex-grow max-h-[1024px] px-2 xs:px-5 pt-5 pb-2 lg:px-10 lg:pt-10 lg:pb-14 2xl:px-20 2xl:pt-20 2xl:pb-24">
+            <div className="flex flex-col flex-grow max-h-[1024px] px-2 xs:px-5 pt-5 pb-4 lg:px-10 lg:pt-10 lg:pb-14 2xl:px-20 2xl:pt-20 2xl:pb-24">
               <Section className="px-4 xxs:px-8 py-3">
                 {header}
               </Section>
               <Section className="mt-5 flex-1 max-h-none">
                 {props.children}
               </Section>
-              <div className="flex flex-row justify-center gap-2 py-2">
+              <div className="flex flex-row justify-center gap-2 pt-3">
                 <MonoLink href="https://discord.gg/7zUPfN4D6g">
                   Discord
                 </MonoLink>
+                <MonoLink href="https://ar.io">
+                  Home
+                </MonoLink>
                 <MonoLink href="https://twitter.com/ar_io_network">
                   Twitter
-                </MonoLink>
-                <MonoLink href="https://ar.io">
-                  Home (ar.io)
                 </MonoLink>
               </div>
             </div>
