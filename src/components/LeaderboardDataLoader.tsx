@@ -13,7 +13,6 @@ export function LeaderboardDataLoader(props: LeaderboardDataLoaderProps) {
     queryFn: async () => {
       const response = await fetchBalances(props.contractId);
       const leaderboardData = balancesRawToFlat(response);
-      console.log(leaderboardData);
       return leaderboardData;
     },
   })

@@ -77,10 +77,7 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ scale }: ThemeToggleProps) =>
 
   return (
     <button
-      onClick={() => {
-        console.log("clicked")
-        setAltBackground(!value)
-      }}
+      onClick={() => setAltBackground(!value)}
     >
       <Stage
         width={scaledSize.width}
