@@ -14,13 +14,12 @@ export type LeaderBoardFlat = LeaderBoardFlatEntry[];
 
 export function balancesRawToFlat(balancesRaw: BalancesRaw): LeaderBoardFlat {
   return Object.entries(balancesRaw).map(([address, score]) => ({
-    rank: 0,
     address,
-    score: score as Score
+    score,
   }))
     .sort((a, b) => b.score - a.score)
     .map((entry, index) => ({
+      rank: index + 1,
       ...entry,
-      rank: index + 1
     }));
 }
