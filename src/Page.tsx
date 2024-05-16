@@ -2,11 +2,11 @@ import { PageLayout } from "./components/PageLayout";
 import { HeaderItems } from "./components/HeaderItems";
 import { PageContent } from "./components/PageContent";
 import { useBackgroundToggle } from "./hooks/useBackgroundToggle";
-import { config } from "./config";
 import { Suspense, lazy } from "react";
 import { LoadingSpinner } from "./components/LoadingSpinner";
-const TableVirtualizedInfiniteProp = lazy(() => import("./components/TableVirtualizedInfiniteProp"))
-const LeaderboardDataLoader = lazy(() => import("./components/LeaderboardDataLoader"))
+// const TableVirtualizedInfiniteProp = lazy(() => import("./components/TableVirtualizedInfiniteProp"))
+// const LeaderboardDataLoader = lazy(() => import("./components/LeaderboardDataLoader"))
+const Fixed = lazy(() => import("./Fixed"));
 
 export function Page() {
   const { altBackground } = useBackgroundToggle()
@@ -19,16 +19,7 @@ export function Page() {
       <PageContent>
         {(filterValue) => (
           <Suspense fallback={<LoadingSpinner />}>
-            <LeaderboardDataLoader
-              contractId={config.processIdLeaderboardContract}
-            >
-              {(data) => (
-                <TableVirtualizedInfiniteProp
-                  flatData={data}
-                  addressFilter={filterValue}
-                />
-              )}
-            </LeaderboardDataLoader>
+            <Fixed addressFilter={filterValue} />
           </Suspense>
         )}
       </PageContent>

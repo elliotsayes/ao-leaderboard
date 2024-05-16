@@ -8,6 +8,7 @@
     "build": "tsc && vite build --base ./",
     "test": "bun test",
     "generate": "bun scripts/generate.ts && cp fixtures/leaderboards/gen_*.json public",
+    "fix": "bun scripts/fix.ts",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006 --no-open",
