@@ -13,7 +13,7 @@ describe('balancesRawToFlat', () => {
       { rank: 2, address: 'address2', score: 2 },
       { rank: 3, address: 'address1', score: 1 },
     ];
-    const actual = balancesRawToFlat(balancesRaw);
+    const actual = balancesRawToFlat(balancesRaw, 0);
     expect(actual).toEqual(expected);
   });
 });
