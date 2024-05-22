@@ -12,10 +12,11 @@ export type LeaderBoardFlatEntry = {
 
 export type LeaderBoardFlat = LeaderBoardFlatEntry[];
 
-export function balancesRawToFlat(balancesRaw: BalancesRaw): LeaderBoardFlat {
+export function balancesRawToFlat(balancesRaw: BalancesRaw, denomination: number): LeaderBoardFlat {
+  const divisor = 10 ** denomination;
   return Object.entries(balancesRaw).map(([address, score]) => ({
     address,
-    score,
+    score: score / divisor,
   }))
     .sort((a, b) => b.score - a.score)
     .map((entry, index) => ({

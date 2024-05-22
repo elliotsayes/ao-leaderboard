@@ -1,4 +1,4 @@
-import { fetchBalances } from "@/lib/ao/balances";
+import { fetchBalances, fetchInfo } from "@/lib/ao/balances";
 import { LeaderBoardFlat, balancesRawToFlat } from "@/lib/model/table";
 import { useSuspenseQuery } from "@tanstack/react-query";
 
@@ -11,8 +11,9 @@ export function LeaderboardDataLoader(props: LeaderboardDataLoaderProps) {
   const { data, isError } = useSuspenseQuery({
     queryKey: ["aoBalance", props.contractId],
     queryFn: async () => {
-      const response = await fetchBalances(props.contractId);
-      const leaderboardData = balancesRawToFlat(response);
+      const info = await fetchInfo(props.contractId);
+      const balances = await fetchBalances(props.contractId);
+      const leaderboardData = balancesRawToFlat(balances, parseInt(info.Denomination));
       return leaderboardData;
     },
   })
